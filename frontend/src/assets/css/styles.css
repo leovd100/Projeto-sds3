@@ -6,6 +6,8 @@
 html, body {
     height: 100%;
     font-family: "Ubuntu", sans-serif;
+    background-color: rgba(155, 152, 155, 0.507);
+    
 }
 
 #root {
@@ -25,8 +27,11 @@ html, body {
 
 .bg-primary {
     background-color: var(--color-primary) !important;
+    
 }
 
 .text-primary {
     color: var(--color-primary) !important;
+    text-shadow: 1px 0px 5px black;
 }
+
