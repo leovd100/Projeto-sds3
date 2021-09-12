@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from 'utils/requests';
 import { round } from 'utils/format';
+import { SaleSuccess } from 'types/sale';
 
 type SeriesData = {
     name: string;
@@ -16,7 +17,7 @@ type ChartData = {
     series: SeriesData[];
 }
 
-function BarChar() {
+const BarChar = () => {
 
     const [chartData, setChartData] = useState<ChartData>({
         labels: {
@@ -33,13 +34,13 @@ function BarChar() {
     useEffect(() => {
         axios.get(`${BASE_URL}/sales/success-by-seller`)
             .then(res => {
-                const data = res.data as SaleSuccess[]
+                const data = res.data as SaleSuccess[];
                 const myLabels = data.map(x => x.sellerName)
                 const mySeries = data.map(x => round(100.0 * x.deals / x.visited, 1))
 
                 setChartData({
                     labels: {
-                        categories: []
+                        categories: myLabels
                     },
                     series: [
                         {
